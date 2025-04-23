@@ -248,7 +248,7 @@ export function startServer(connection: Connection, runtime: RuntimeEnvironment)
 				await runSafe(runtime, async () => {
 					const document = documentChange.document;
 
-					if (documentChange.changes) {
+					if (documentChange.changes && documentChange.changes.length == 1) {
 						for (const edit of documentChange.changes) {
 							if (TextDocumentContentChangeEvent.isIncremental(edit)) {
 								const pos: Position = { line: edit.range.start.line, character: edit.range.start.character + 1 };
